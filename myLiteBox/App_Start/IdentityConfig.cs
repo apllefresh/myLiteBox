@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -19,20 +20,22 @@ namespace myLiteBox
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+
+            manager.UserValidator = new CustomUserValidator(manager);
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
-            {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
-            };
+            //manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+            //{
+            //    AllowOnlyAlphanumericUserNames = false,
+            //    RequireUniqueEmail = true
+            //};
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
@@ -40,6 +43,26 @@ namespace myLiteBox
                 manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+    }
+
+    public class CustomUserValidator : UserValidator<ApplicationUser>
+    {
+        public CustomUserValidator(ApplicationUserManager mgr)
+            : base(mgr)
+        {
+            AllowOnlyAlphanumericUserNames = false;
+        }
+        public override async Task<IdentityResult> ValidateAsync(ApplicationUser user)
+        {
+            IdentityResult result = await base.ValidateAsync(user);
+            if (user.UserName.Contains("admin"))
+            {
+                var errors = result.Errors.ToList();
+                errors.Add("Ник пользователя не должен содержать слово 'admin'");
+                result = new IdentityResult(errors);
+            }
+            return result;
         }
     }
 }
