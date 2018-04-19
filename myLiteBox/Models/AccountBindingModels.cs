@@ -35,10 +35,6 @@ namespace myLiteBox.Models
     public class RegisterBindingModel
     {
         [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Required]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
 
