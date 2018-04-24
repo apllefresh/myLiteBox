@@ -3,25 +3,46 @@
 @{
     ViewBag.Title = "Login";
 }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
 
-<h2>Вход на сайт</h2>
+    <title>Signin Template for Bootstrap</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/signin.css" rel="stylesheet" />
+    
+</head>
 
+<body class="text-center">
+    <form class="form-signin" method="post">
+       
+        @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div>
-        @Html.ValidationSummary()
-        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
-        <p>
-            <label>Email</label><br />
-            @Html.EditorFor(x => x.Email)
-        </p>
-        <p>
-            <label>Пароль</label><br />
-            @Html.EditorFor(x => x.Password)
-        </p>
-        <p><button type="submit">Войти</button></p>
-    </div>
+        <div>
+            @Html.ValidationSummary()
+            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+            <h1 class="h3 mb-3 font-weight-normal">Вход на сайт</h1>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "sr-only" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Login" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
+                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        </div>
+        
 }
+
+
+    </form>
+</body>
+
+
+
