@@ -1,0 +1,31 @@
+﻿@model List<myLiteBoxMVC.Models.ListUser>
+
+@{
+    ViewBag.Title = "Роли";
+}
+
+<h2>Пользователи</h2>
+<table class="table">
+    <tr>
+        <th>Логин</th>
+        <th>Имя</th>
+        <th>Отдел</th>
+        <th>Роль</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.UserName</td>
+        <td>@item.Name</td>
+        <td>@item.Departments </td>
+        <td>@item.Roles </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { login = item.UserName }) |
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { login = item.UserName })
+        </td>
+    </tr>
+    }
+</table>

@@ -10,16 +10,29 @@
 {
     @Html.AntiForgeryToken()
 
+<div>
+    @Html.ValidationSummary(true, "")
+    @Html.HiddenFor(model=> model.Id)
     <div>
-        @Html.ValidationSummary(true, "")
+        <p>UserName: @Html.EditorFor(model => model.UserName, new { @class = "form-control" })</p>
+    </div>
+    <div>
+        <p>Name: @Html.EditorFor(model => model.Name, new { @class = "form-control" })</p>
+    </div>
+    <div>
+        <p>Departments: @Html.EditorFor(model => model.Departments, new { @class = "form-control" })</p>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SelectedRoleId, "Category", new { @class = "control-label col-md-2" })
         <div>
-            <p>Year: @Html.EditorFor(model => model.Year)</p>
-        </div>
-
-        <div>
-            <div>
-                <input type="submit" value="Сохранить" />
-            </div>
+            @Html.DropDownListFor(model => model.SelectedRoleId, new SelectList(Model.roles, "Id", "Name"), "- Please Select -", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SelectedRoleId)
         </div>
     </div>
+    <div>
+        <div>
+            <input type="submit" value="Сохранить" />
+        </div>
+    </div>
+</div>
 }

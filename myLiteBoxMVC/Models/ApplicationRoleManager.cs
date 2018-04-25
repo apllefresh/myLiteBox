@@ -5,16 +5,16 @@ using Microsoft.Owin;
 
 namespace myLiteBoxMVC.Models
 {
-    class ApplicationRoleManager : RoleManager<ApplicationRole>
+    class ApplicationRoleManager : RoleManager<IdentityRole>
     {
-        public ApplicationRoleManager(RoleStore<ApplicationRole> store)
+        public ApplicationRoleManager(RoleStore<IdentityRole> store)
                     : base(store)
         { }
         public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options,
                                                 IOwinContext context)
         {
             return new ApplicationRoleManager(new
-                    RoleStore<ApplicationRole>(context.Get<ApplicationContext>()));
+                    RoleStore<IdentityRole>(context.Get<ApplicationContext>()));
         }
     }
 }

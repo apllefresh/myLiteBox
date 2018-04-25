@@ -190,14 +190,16 @@
     <Compile Include="Migrations\201804192315467_DataMigration.Designer.cs">
       <DependentUpon>201804192315467_DataMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804241642195_DataMigration1.cs" />
+    <Compile Include="Migrations\201804241642195_DataMigration1.Designer.cs">
+      <DependentUpon>201804241642195_DataMigration1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\ApplicationRoleManager.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ApplicationUserManager.cs" />
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +251,7 @@
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804192255505_InitialCreate.resx">
@@ -256,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804192315467_DataMigration.resx">
       <DependentUpon>201804192315467_DataMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804241642195_DataMigration1.resx">
+      <DependentUpon>201804241642195_DataMigration1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

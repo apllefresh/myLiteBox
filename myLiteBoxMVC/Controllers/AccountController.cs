@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Security.Claims;
 using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace myLiteBoxMVC.Controllers
 {
@@ -22,6 +23,31 @@ namespace myLiteBoxMVC.Controllers
             }
         }
 
+        private ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
+        }
+
+        public ActionResult Index()
+        {
+            List<ListUser> list = new List<ListUser>();
+            foreach (var u in  UserManager.Users.ToList())
+            {
+                list.Add( new ListUser()
+                {
+                    UserName = u.UserName,
+                    Departments = u.Departments,
+                    Name = u.Name,
+                    Roles = UserManager.GetRoles(u.Id).ToList().Count != 0 ? UserManager.GetRoles(u.Id).ToList()[0] : "No Role"
+                });
+            }
+            return View(list);
+        }
+
+       
         public ActionResult Register()
         {
             return View();
@@ -32,7 +58,7 @@ namespace myLiteBoxMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email, Year = model.Year };
+                ApplicationUser user = new ApplicationUser { UserName = model.UserName, Departments = model.Departments };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -69,7 +95,7 @@ namespace myLiteBoxMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = await UserManager.FindAsync(model.Email, model.Password);
+                ApplicationUser user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user == null)
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль.");
@@ -84,7 +110,7 @@ namespace myLiteBoxMVC.Controllers
                         IsPersistent = true
                     }, claim);
                     if (String.IsNullOrEmpty(returnUrl))
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Account");
                     return Redirect(returnUrl);
                 }
             }
@@ -120,12 +146,21 @@ namespace myLiteBoxMVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<ActionResult> Edit()
+        [Authorize]
+        public async Task<ActionResult> Edit(string login)
         {
-            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            ApplicationUser user = await UserManager.FindByNameAsync(login);
             if (user != null)
             {
-                EditModel model = new EditModel { Year = user.Year };
+                EditModel model = new EditModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Name = user.Name,
+                    Departments = user.Departments,
+                    roles = RoleManager.Roles.ToList()
+                };
+               
                 return View(model);
             }
             return RedirectToAction("Login", "Account");
@@ -134,10 +169,18 @@ namespace myLiteBoxMVC.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(EditModel model)
         {
-            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            ApplicationUser user = await UserManager.FindByIdAsync(model.Id);
             if (user != null)
             {
-                user.Year = model.Year;
+                user.Departments = model.Departments;
+                user.UserName = model.UserName;
+                user.Name = model.Name;
+                if (model.role != null)
+                {
+                    string[] roles = UserManager.GetRoles(user.Id).ToArray();
+                    await UserManager.RemoveFromRolesAsync(user.Id, roles);
+                    await UserManager.AddToRoleAsync(user.Id, model.role.Name);
+                }
                 IdentityResult result = await UserManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
