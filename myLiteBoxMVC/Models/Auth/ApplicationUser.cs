@@ -51,10 +51,16 @@ namespace myLiteBoxMVC.Models
         public string UserName { get; set; }
 
         [Required]
-        public string Departments { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public int Name { get; set; }
+        public string DepartmentId { get; set; }
+        public List<Department> departments { get; set; }
+        public Department dep { get; set; }
+
+        public string SelectedRoleId { get; set; }
+        public List<IdentityRole> roles { get; set; }
+        public IdentityRole role { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

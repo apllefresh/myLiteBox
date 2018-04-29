@@ -9,8 +9,8 @@
     <div>
         @Html.ValidationSummary(true, "")
         @Html.HiddenFor(model => model.Id)
-        <p>Название:  @Html.EditorFor(model => model.Name)</p>
-        <p>Описание: @Html.EditorFor(model => model.Description)</p>
-        <p><input type="submit" value="Изменить" /></p>
+        <p>Название:  @Html.EditorFor(model => model.Name, new { @class = "form-control" })</p>
+        <p>Описание: @Html.EditorFor(model => model.Description, new { @class = "form-control"})</p>
+        <p><input class="btn btn-primary " type="submit" value="Изменить" /></p>
     </div>
 }

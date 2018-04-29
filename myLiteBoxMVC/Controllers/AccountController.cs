@@ -50,7 +50,16 @@ namespace myLiteBoxMVC.Controllers
        
         public ActionResult Register()
         {
-            return View();
+            RegisterModel model;
+            using (ApplicationContext content = new ApplicationContext())
+            {
+                model = new RegisterModel
+                {
+                    departments = content.Departments.ToList(),
+                    roles = RoleManager.Roles.ToList()
+                };
+                return View(model);
+            }
         }
 
         [HttpPost]
@@ -58,10 +67,17 @@ namespace myLiteBoxMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.UserName, DepartmentId = model.Departments };
+                ApplicationUser user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    DepartmentId = model.DepartmentId,
+                    Name = model.Name
+                    
+                };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, model.role.Name);
                     return RedirectToAction("Login", "Account");
                 }
                 else
