@@ -39,7 +39,7 @@ namespace myLiteBoxMVC.Controllers
                 list.Add( new ListUser()
                 {
                     UserName = u.UserName,
-                    Departments = u.Departments,
+                    Departments = u.DepartmentId,
                     Name = u.Name,
                     Roles = UserManager.GetRoles(u.Id).ToList().Count != 0 ? UserManager.GetRoles(u.Id).ToList()[0] : "No Role"
                 });
@@ -58,7 +58,7 @@ namespace myLiteBoxMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.UserName, Departments = model.Departments };
+                ApplicationUser user = new ApplicationUser { UserName = model.UserName, DepartmentId = model.Departments };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -152,16 +152,25 @@ namespace myLiteBoxMVC.Controllers
             ApplicationUser user = await UserManager.FindByNameAsync(login);
             if (user != null)
             {
-                EditModel model = new EditModel
+                EditModel model;
+                using (ApplicationContext content = new ApplicationContext())
                 {
-                    Id = user.Id,
-                    UserName = user.UserName,
-                    Name = user.Name,
-                    Departments = user.Departments,
-                    roles = RoleManager.Roles.ToList()
-                };
-               
-                return View(model);
+                    Department _dep = null;
+                    foreach (Department d in content.Departments)
+                        if (d.Id == user.DepartmentId) _dep = d;
+                    model = new EditModel
+                    {
+                        Id = user.Id,
+                        UserName = user.UserName,
+                        Name = user.Name,
+                        departments = content.Departments.ToList(),
+                        dep = _dep,
+                        roles = RoleManager.Roles.ToList(),
+                        role = UserManager.GetRoles(user.Id).ToList().Count != 0 ? RoleManager.FindByName(UserManager.GetRoles(user.Id).ToList()[0]) : null
+                    };
+                }
+                    return View(model);
+                
             }
             return RedirectToAction("Login", "Account");
         }
@@ -172,7 +181,7 @@ namespace myLiteBoxMVC.Controllers
             ApplicationUser user = await UserManager.FindByIdAsync(model.Id);
             if (user != null)
             {
-                user.Departments = model.Departments;
+                user.DepartmentId = model.DepartmentId;
                 user.UserName = model.UserName;
                 user.Name = model.Name;
                 if (model.role != null)

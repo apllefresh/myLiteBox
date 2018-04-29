@@ -7,7 +7,7 @@ namespace myLiteBoxMVC.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public int Departments { get; set; }
+        public string DepartmentId { get; set; }
         public string Name { get; set; }
         public ApplicationUser()
         {
@@ -32,27 +32,16 @@ namespace myLiteBoxMVC.Models
         public string UserName { get; set; }
 
         [Required]
-        public int Departments { get; set; }
-
-        [Required]
         public string Name { get; set; }
 
-        //[Required]
-        //public List<string> Roles { get; set; }
+        [Required]
+        public string DepartmentId { get; set; }
+        public List<Department> departments { get; set; }
+        public Department dep { get; set; }
 
         public int SelectedRoleId { get; set; }
         public List<IdentityRole> roles { get; set; }
         public IdentityRole role { get; set; }
-
-        //public  List<ApplicationRole> role;
-
-        //public int SelectedRoleId { get; set; }
-
-        //public IEnumerable<SelectListItem> Roles
-        //{
-        //    get { return new SelectList(role, "Id", "Name"); }
-        //   // set { this.Roles = value; }
-        //}
     }
 
 
@@ -62,7 +51,7 @@ namespace myLiteBoxMVC.Models
         public string UserName { get; set; }
 
         [Required]
-        public int Departments { get; set; }
+        public string Departments { get; set; }
 
         [Required]
         public int Name { get; set; }
@@ -83,7 +72,7 @@ namespace myLiteBoxMVC.Models
         public string UserName { get; set; }
 
         [Required]
-        public int Departments { get; set; }
+        public string Departments { get; set; }
 
         [Required]
         public string Name { get; set; }

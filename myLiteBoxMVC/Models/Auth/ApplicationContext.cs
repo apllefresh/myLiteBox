@@ -7,6 +7,7 @@ namespace myLiteBoxMVC.Models
     {
         public ApplicationContext() : base("IdentityDb") { }
 
+        public DbSet<Department> Departments { get; set; }
         //public DbSet<ApplicationUser> Users { get; set; }
         //public DbSet<ApplicationRole> Roles { get; set; }
 
