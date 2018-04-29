@@ -11,4 +11,9 @@ namespace myLiteBoxMVC.Models
         public string Name { get; set; }
         public bool isSale { get; set; }
     }
+    public class CreateDepartmentModel
+    {
+        public string Name { get; set; }
+        public bool isSale { get; set; }
+    }
 }

@@ -78,7 +78,7 @@ namespace myLiteBoxMVC.Models
         public string UserName { get; set; }
 
         [Required]
-        public string Departments { get; set; }
+        public string Department { get; set; }
 
         [Required]
         public string Name { get; set; }

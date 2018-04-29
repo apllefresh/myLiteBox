@@ -15,17 +15,18 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>@item.UserName</td>
-        <td>@item.Name</td>
-        <td>@item.Departments </td>
-        <td>@item.Roles </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { login = item.UserName }) |
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { login = item.UserName })
-        </td>
-    </tr>
+        <tr>
+            <td>@item.UserName</td>
+            <td>@item.Name</td>
+            <td>@item.Department </td>
+            <td>@item.Roles </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { login = item.UserName }) |
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { login = item.UserName })
+            </td>
+        </tr>
     }
 </table>
+@Html.ActionLink("Create new", "Register")

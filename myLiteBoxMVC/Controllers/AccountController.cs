@@ -34,12 +34,17 @@ namespace myLiteBoxMVC.Controllers
         public ActionResult Index()
         {
             List<ListUser> list = new List<ListUser>();
-            foreach (var u in  UserManager.Users.ToList())
+            List<Department> deps = new List<Department>();
+            using (ApplicationContext content = new ApplicationContext())
             {
-                list.Add( new ListUser()
+                deps = content.Departments.ToList();
+            }
+            foreach (var u in UserManager.Users.ToList())
+            {
+                list.Add(new ListUser()
                 {
                     UserName = u.UserName,
-                    Departments = u.DepartmentId,
+                    Department = deps.Where(d=>d.Id == u.DepartmentId).Select(g=> g.Name).First(),
                     Name = u.Name,
                     Roles = UserManager.GetRoles(u.Id).ToList().Count != 0 ? UserManager.GetRoles(u.Id).ToList()[0] : "No Role"
                 });
@@ -47,7 +52,7 @@ namespace myLiteBoxMVC.Controllers
             return View(list);
         }
 
-       
+
         public ActionResult Register()
         {
             RegisterModel model;
@@ -72,13 +77,18 @@ namespace myLiteBoxMVC.Controllers
                     UserName = model.UserName,
                     DepartmentId = model.DepartmentId,
                     Name = model.Name
-                    
+
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id, model.role.Name);
-                    return RedirectToAction("Login", "Account");
+                    ApplicationRole role = null;
+                    foreach (ApplicationRole r in RoleManager.Roles)
+                    {
+                        if (r.Id == model.SelectedRoleId) role = r;
+                    }
+                    if (role != null) UserManager.AddToRole(user.Id, role.Name);
+                    return RedirectToAction("Index", "Account");
                 }
                 else
                 {
@@ -185,8 +195,8 @@ namespace myLiteBoxMVC.Controllers
                         role = UserManager.GetRoles(user.Id).ToList().Count != 0 ? RoleManager.FindByName(UserManager.GetRoles(user.Id).ToList()[0]) : null
                     };
                 }
-                    return View(model);
-                
+                return View(model);
+
             }
             return RedirectToAction("Login", "Account");
         }
