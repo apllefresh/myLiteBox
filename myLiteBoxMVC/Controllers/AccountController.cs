@@ -44,7 +44,7 @@ namespace myLiteBoxMVC.Controllers
                 list.Add(new ListUser()
                 {
                     UserName = u.UserName,
-                    Department = deps.Where(d=>d.Id == u.DepartmentId).Select(g=> g.Name).First(),
+                    Department = deps.Where(d => d.Id == u.DepartmentId).Select(g => g.Name).First(),
                     Name = u.Name,
                     Roles = UserManager.GetRoles(u.Id).ToList().Count != 0 ? UserManager.GetRoles(u.Id).ToList()[0] : "No Role"
                 });

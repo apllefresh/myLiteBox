@@ -15,5 +15,7 @@ namespace myLiteBoxMVC.Models
         {
             return new ApplicationContext();
         }
+
+        public System.Data.Entity.DbSet<myLiteBoxMVC.Models.Unit> Units { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace myLiteBoxMVC.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public string DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
         public string Name { get; set; }
         public ApplicationUser()
         {
@@ -35,7 +35,7 @@ namespace myLiteBoxMVC.Models
         public string Name { get; set; }
 
         [Required]
-        public string DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
         public List<Department> departments { get; set; }
         public Department dep { get; set; }
 
@@ -54,7 +54,7 @@ namespace myLiteBoxMVC.Models
         public string Name { get; set; }
 
         [Required]
-        public string DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
         public List<Department> departments { get; set; }
         public Department dep { get; set; }
 

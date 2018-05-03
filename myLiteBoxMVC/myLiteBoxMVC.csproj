@@ -177,18 +177,37 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804292149523_InitialCreate.cs" />
+    <Compile Include="Migrations\201804292149523_InitialCreate.Designer.cs">
+      <DependentUpon>201804292149523_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805022140574_depId to int.cs" />
+    <Compile Include="Migrations\201805022140574_depId to int.Designer.cs">
+      <DependentUpon>201805022140574_depId to int.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805022145597_depId to int2.cs" />
+    <Compile Include="Migrations\201805022145597_depId to int2.Designer.cs">
+      <DependentUpon>201805022145597_depId to int2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805022227162_table unit.cs" />
+    <Compile Include="Migrations\201805022227162_table unit.Designer.cs">
+      <DependentUpon>201805022227162_table unit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Auth\ApplicationContext.cs" />
     <Compile Include="Models\Auth\ApplicationRole.cs" />
     <Compile Include="Models\Auth\ApplicationRoleManager.cs" />
     <Compile Include="Models\Auth\ApplicationUser.cs" />
     <Compile Include="Models\Auth\ApplicationUserManager.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -237,10 +256,14 @@
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Departments\Create.cshtml" />
-    <Content Include="Views\Departments\Delete.cshtml" />
-    <Content Include="Views\Departments\Edit.cshtml" />
-    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\Delete.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Unit\Create.cshtml" />
+    <Content Include="Views\Unit\Delete.cshtml" />
+    <Content Include="Views\Unit\Edit.cshtml" />
+    <Content Include="Views\Unit\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -257,6 +280,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804292149523_InitialCreate.resx">
+      <DependentUpon>201804292149523_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805022140574_depId to int.resx">
+      <DependentUpon>201805022140574_depId to int.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805022145597_depId to int2.resx">
+      <DependentUpon>201805022145597_depId to int2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805022227162_table unit.resx">
+      <DependentUpon>201805022227162_table unit.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

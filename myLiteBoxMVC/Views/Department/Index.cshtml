@@ -23,6 +23,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.isSale)
             </th>
+          
             <th></th>
         </tr>
     
@@ -34,6 +35,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.isSale)
             </td>
+                @Html.HiddenFor(modelItem => item.isActive)
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id=item.Id })
