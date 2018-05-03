@@ -179,6 +179,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NDSController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Global.asax.cs">
@@ -200,6 +201,10 @@
     <Compile Include="Migrations\201805022227162_table unit.Designer.cs">
       <DependentUpon>201805022227162_table unit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805031913267_nds.cs" />
+    <Compile Include="Migrations\201805031913267_nds.Designer.cs">
+      <DependentUpon>201805031913267_nds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Auth\ApplicationContext.cs" />
     <Compile Include="Models\Auth\ApplicationRole.cs" />
@@ -207,6 +212,7 @@
     <Compile Include="Models\Auth\ApplicationUser.cs" />
     <Compile Include="Models\Auth\ApplicationUserManager.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\NDS.cs" />
     <Compile Include="Models\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -264,6 +270,10 @@
     <Content Include="Views\Unit\Delete.cshtml" />
     <Content Include="Views\Unit\Edit.cshtml" />
     <Content Include="Views\Unit\Index.cshtml" />
+    <Content Include="Views\NDS\Create.cshtml" />
+    <Content Include="Views\NDS\Delete.cshtml" />
+    <Content Include="Views\NDS\Edit.cshtml" />
+    <Content Include="Views\NDS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -293,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805022227162_table unit.resx">
       <DependentUpon>201805022227162_table unit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805031913267_nds.resx">
+      <DependentUpon>201805031913267_nds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
