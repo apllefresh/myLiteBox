@@ -19,5 +19,7 @@ namespace myLiteBoxMVC.Models
         public System.Data.Entity.DbSet<myLiteBoxMVC.Models.Unit> Units { get; set; }
 
         public System.Data.Entity.DbSet<myLiteBoxMVC.Models.NDS> NDS { get; set; }
+
+        public System.Data.Entity.DbSet<myLiteBoxMVC.Models.Manufacturer> Manufacturers { get; set; }
     }
 }

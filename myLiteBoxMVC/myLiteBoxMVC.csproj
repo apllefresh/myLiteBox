@@ -179,6 +179,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\NDSController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
@@ -205,6 +206,10 @@
     <Compile Include="Migrations\201805031913267_nds.Designer.cs">
       <DependentUpon>201805031913267_nds.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805032031175_Manufacturer.cs" />
+    <Compile Include="Migrations\201805032031175_Manufacturer.Designer.cs">
+      <DependentUpon>201805032031175_Manufacturer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Auth\ApplicationContext.cs" />
     <Compile Include="Models\Auth\ApplicationRole.cs" />
@@ -212,6 +217,7 @@
     <Compile Include="Models\Auth\ApplicationUser.cs" />
     <Compile Include="Models\Auth\ApplicationUserManager.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\NDS.cs" />
     <Compile Include="Models\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -274,6 +280,10 @@
     <Content Include="Views\NDS\Delete.cshtml" />
     <Content Include="Views\NDS\Edit.cshtml" />
     <Content Include="Views\NDS\Index.cshtml" />
+    <Content Include="Views\Manufacturer\Create.cshtml" />
+    <Content Include="Views\Manufacturer\Delete.cshtml" />
+    <Content Include="Views\Manufacturer\Edit.cshtml" />
+    <Content Include="Views\Manufacturer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -306,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805031913267_nds.resx">
       <DependentUpon>201805031913267_nds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805032031175_Manufacturer.resx">
+      <DependentUpon>201805032031175_Manufacturer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
