@@ -23,5 +23,7 @@ namespace myLiteBoxMVC.Models
         public System.Data.Entity.DbSet<myLiteBoxMVC.Models.Manufacturer> Manufacturers { get; set; }
 
         public System.Data.Entity.DbSet<myLiteBoxMVC.Models.Group> Groups { get; set; }
+
+        public System.Data.Entity.DbSet<myLiteBoxMVC.Models.Sertification> Sertifications { get; set; }
     }
 }

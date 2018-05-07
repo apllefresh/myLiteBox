@@ -1,0 +1,95 @@
+﻿@model myLiteBoxMVC.Models.CreateSertificationModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!--
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+         -->
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Sertification</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.dateStart, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dateStart, new { htmlAttributes = new { @Value = Model.dateStart.ToString("yyyy/MM/dd"), @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dateStart, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.dateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dateEnd, new { htmlAttributes = new { @Value = Model.dateEnd.ToString("yyyy/MM/dd"), @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dateEnd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.dateReg, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dateReg, new { htmlAttributes = new { @Value = Model.dateReg.ToString("yyyy/MM/dd"), @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dateReg, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ManufacturerId, "Производитель", new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.DropDownListFor(model => model.ManufacturerId, new SelectList(Model.manufacturers, "Id", "Name"), "- Please Select -", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ManufacturerId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#dateStart').datepicker();
+        });
+        $(function () {
+            $('#dateEnd').datepicker();
+        });
+        $(function () {
+            $('#dateReg').datepicker();
+        });
+    </script>
+</body>
+
+</html>

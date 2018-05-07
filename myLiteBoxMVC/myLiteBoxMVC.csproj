@@ -183,6 +183,7 @@
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\NDSController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SertificationController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,6 +216,10 @@
     <Compile Include="Migrations\201805032128022_Group.Designer.cs">
       <DependentUpon>201805032128022_Group.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805070748215_sert.cs" />
+    <Compile Include="Migrations\201805070748215_sert.Designer.cs">
+      <DependentUpon>201805070748215_sert.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Auth\ApplicationContext.cs" />
     <Compile Include="Models\Auth\ApplicationRole.cs" />
@@ -225,6 +230,7 @@
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\NDS.cs" />
+    <Compile Include="Models\Sertification.cs" />
     <Compile Include="Models\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -294,6 +300,10 @@
     <Content Include="Views\Group\Delete.cshtml" />
     <Content Include="Views\Group\Edit.cshtml" />
     <Content Include="Views\Group\Index.cshtml" />
+    <Content Include="Views\Sertification\Create.cshtml" />
+    <Content Include="Views\Sertification\Delete.cshtml" />
+    <Content Include="Views\Sertification\Edit.cshtml" />
+    <Content Include="Views\Sertification\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -332,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805032128022_Group.resx">
       <DependentUpon>201805032128022_Group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070748215_sert.resx">
+      <DependentUpon>201805070748215_sert.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
