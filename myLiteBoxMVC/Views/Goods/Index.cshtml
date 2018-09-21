@@ -1,0 +1,57 @@
+﻿@model IEnumerable<myLiteBoxMVC.Models.ViewGoodsModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+</head>
+<body>
+    <input type="text" placeholder="Введите штрихкод"  id="tbSearch" />
+    <table  id="tableBlock">
+        
+    </table>
+    <script type="text/javascript">
+        $('#tbSearch').on('keypress', function (e) {
+            if (e.which === 13) {
+                var ean = $('#tbSearch').val();
+                
+                $.ajax({
+                    url: "/Goods/Index",
+                    type: "POST",
+                    dataType: "json",
+                    data: { ean: ean } ,
+                    success: function (data) {
+                       // WriteResponse(data)
+                        WriteResponse();
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+                    }
+                })
+             }
+        });
+
+        // вывод полученных данных на экран
+        function WriteResponse() {
+            var strResult = "<table><th>ID</th><th>Название</th><th>Автор</th><th>Год издания</th>";
+            var r = model.Name;
+            $.each(books, function (index, book) {
+                strResult += "<tr><td>" +  book.Name + "</td><td>" +
+                     + "</td><td>" + + "</td></tr>";
+            });
+            strResult += "</table>";
+            $("#tableBlock").html(strResult);
+
+        }
+    </script>
+</body >
+</html >

@@ -25,5 +25,13 @@ namespace myLiteBoxMVC.Models
         public System.Data.Entity.DbSet<myLiteBoxMVC.Models.Group> Groups { get; set; }
 
         public System.Data.Entity.DbSet<myLiteBoxMVC.Models.Sertification> Sertifications { get; set; }
+
+        public System.Data.Entity.DbSet<myLiteBoxMVC.Models.Good> Goods { get; set; }
+
+        public System.Data.Entity.DbSet<myLiteBoxMVC.Models.SGood> SGoods { get; set; }
+
+        public System.Data.Entity.DbSet<myLiteBoxMVC.Models.GoodInf> GoodInfs { get; set; }
+
+        public System.Data.Entity.DbSet<myLiteBoxMVC.Models.RPrice> RPrices { get; set; }
     }
 }

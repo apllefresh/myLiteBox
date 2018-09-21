@@ -178,6 +178,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
@@ -220,6 +221,26 @@
     <Compile Include="Migrations\201805070748215_sert.Designer.cs">
       <DependentUpon>201805070748215_sert.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805121745332_good.cs" />
+    <Compile Include="Migrations\201805121745332_good.Designer.cs">
+      <DependentUpon>201805121745332_good.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121805227_SGood.cs" />
+    <Compile Include="Migrations\201805121805227_SGood.Designer.cs">
+      <DependentUpon>201805121805227_SGood.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121825471_sgoodId to string.cs" />
+    <Compile Include="Migrations\201805121825471_sgoodId to string.Designer.cs">
+      <DependentUpon>201805121825471_sgoodId to string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121829215_sgoodId to string 2.cs" />
+    <Compile Include="Migrations\201805121829215_sgoodId to string 2.Designer.cs">
+      <DependentUpon>201805121829215_sgoodId to string 2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121856147_sgoodId to string 3.cs" />
+    <Compile Include="Migrations\201805121856147_sgoodId to string 3.Designer.cs">
+      <DependentUpon>201805121856147_sgoodId to string 3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Auth\ApplicationContext.cs" />
     <Compile Include="Models\Auth\ApplicationRole.cs" />
@@ -227,10 +248,15 @@
     <Compile Include="Models\Auth\ApplicationUser.cs" />
     <Compile Include="Models\Auth\ApplicationUserManager.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Good.cs" />
+    <Compile Include="Models\GoodInf.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\NDS.cs" />
+    <Compile Include="Models\NewGood.cs" />
+    <Compile Include="Models\RPrice.cs" />
     <Compile Include="Models\Sertification.cs" />
+    <Compile Include="Models\SGood.cs" />
     <Compile Include="Models\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -304,6 +330,9 @@
     <Content Include="Views\Sertification\Delete.cshtml" />
     <Content Include="Views\Sertification\Edit.cshtml" />
     <Content Include="Views\Sertification\Index.cshtml" />
+    <Content Include="Views\Goods\Create.cshtml" />
+    <Content Include="Views\Goods\Edit.cshtml" />
+    <Content Include="Views\Goods\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -345,6 +374,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805070748215_sert.resx">
       <DependentUpon>201805070748215_sert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121745332_good.resx">
+      <DependentUpon>201805121745332_good.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121805227_SGood.resx">
+      <DependentUpon>201805121805227_SGood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121825471_sgoodId to string.resx">
+      <DependentUpon>201805121825471_sgoodId to string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121829215_sgoodId to string 2.resx">
+      <DependentUpon>201805121829215_sgoodId to string 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121856147_sgoodId to string 3.resx">
+      <DependentUpon>201805121856147_sgoodId to string 3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
